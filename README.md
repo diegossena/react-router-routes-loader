@@ -52,7 +52,7 @@ This assumes you have a Webpack project with React Router set up.
 
 ## Folder Structure
 
-Here is a basic React project. All of the project code lives in `src` with a top level `index.tsx` and `App.tsx`. For this example, `App.tsx` is the file that will contain our reference to `react-router-routes-loader`. Let's say also we passed `react-router-routes-loader!./pages`:
+Here is a basic React project. All of the project code lives in `src` with a top level `index.tsx` and `App.tsx`. For this example, `App.tsx` is the file that will contain our reference to `react-router-routes-loader`. Let's say also we passed `react-router-routes-loader!../../pages`:
 
 ```
 └── src
