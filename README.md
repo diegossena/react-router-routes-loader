@@ -1,6 +1,6 @@
 # react-router-routes-loader
 
-A loader for generating route config array for use with [react-router-dom v6](https://github.com/remix-run/react-router) and [Webpack](https://github.com/webpack/webpack)
+A loader for generating route config array for use with [Typescript](https://github.com/microsoft/TypeScript), [react-router-dom v6](https://github.com/remix-run/react-router) and [Webpack](https://github.com/webpack/webpack)
 
 Inspired in [react-router-routes-loader](https://github.com/jonstuebe/react-router-routes-loader) by [jonstuebe](https://github.com/jonstuebe)
 
