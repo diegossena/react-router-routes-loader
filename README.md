@@ -6,7 +6,7 @@ Inspired in [react-router-routes-loader](https://github.com/jonstuebe/react-rout
 
 ## Purpose
 
-The purpose of this loader is to give you a similar experience to [Next.js](https://nextjs.org/) of file-based routing. However, instead of having to use a completely different router like Next.js, you can use [react-router-dom v6]([[https://github.com/ReactTraining/react-router](](https://github.com/remix-run/react-router))).
+The purpose of this loader is to give you a similar experience to [Next.js](https://nextjs.org/) of file-based routing. However, instead of having to use a completely different router like Next.js, you can use [react-router-dom v6](https://github.com/remix-run/react-router).
 
 ## Usage
 
