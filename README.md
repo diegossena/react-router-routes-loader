@@ -2,7 +2,7 @@
 
 A loader for generating route config array for use with [React Router DOM]([https://github.com/ReactTraining/react-router](https://github.com/remix-run/react-router)) and [Webpack](https://github.com/webpack/webpack)
 
-inspired in [react-router-routes-loader]([https://github.com/jonstuebe/react-router-routes-loader]) by [jonstuebe]([https://github.com/jonstuebe])
+Inspired in [react-router-routes-loader](https://github.com/jonstuebe/react-router-routes-loader) by [jonstuebe](https://github.com/jonstuebe)
 
 ## Purpose
 
