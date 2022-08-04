@@ -12,58 +12,41 @@ This assumes you have a Webpack project with React Router set up.
 
 1. Install:
 
-   `yarn add --dev react-router-routes-loader`
+   download and copy to `utils/router` and config require('./loader!path-to-pages')
 
-2. In your main `App.<js|tsx>` file (or something similar) add the require call to `react-router-routes-loader` in order to retrieve the routing information that you will want to pass to `react-router-dom`:
+2. In your main `index.tsx` file (or something similar) add import to `utils/router` in order to retrieve the routing information that you will want to pass to `react-router-dom`:
 
-   ```js
-   // will generate a route config from your current working directory
-   const routes = require("react-router-routes-loader!.");
+   ```typescript
+   import React from 'react'
+   import { createRoot } from 'react-dom/client'
+   import {
+     BrowserRouter,
+     Routes,
+     Route
+   } from 'react-router-dom'
+   import { routes } from 'utils/router'
 
-   // will generate a route config from the pages directory in your working directory (similar to Next.js)
-   const routes = require("react-router-routes-loader!./pages");
+   import App from './App'
+
+   const rootElement = document.getElementById('root')
+   const root = createRoot(rootElement)
+
+   console.log({ routes })
+
+   root.render(
+     <React.StrictMode>
+       <BrowserRouter>
+         <Routes>
+           <Route path="/" element={<App />}>
+             {routes.map((route, i) => (
+               <Route key={i} {...route} />
+             ))}
+           </Route>
+         </Routes>
+       </BrowserRouter>
+     </React.StrictMode>
+   )
    ```
-
-3. Use the `routes` in combination with [React Router](https://github.com/ReactTraining/react-router) to render your routes:
-
-```javascript
-<Router>
-  <Switch>
-    {routes.map((route, idx) => {
-      return (
-        <Route
-          key={idx}
-          component={route.component.default}
-          path={route.path}
-          exact={Boolean(route.exact)}
-        />
-      );
-    })}
-    {/* other routes can go here (404, etc) */}
-  </Switch>
-</Router>
-```
-
-```typescript
-// in typescript
-<Router>
-  <Switch>
-    {routes.map(
-      (route: { component: any; path: string; exact: string }, idx: number) => {
-        return (
-          <Route
-            key={idx}
-            component={route.component.default}
-            path={route.path}
-            exact={Boolean(route.exact)}
-          />
-        );
-      }
-    )}
-    {/* other routes can go here (404, etc) */}
-  </Switch>
-</Router>
-```
 
 ## Folder Structure
 
@@ -72,25 +55,23 @@ Here is a basic React project. All of the project code lives in `src` with a top
 ```
 └── src
     ├── App.tsx
-    ├── components
-    │   ├── Header.tsx
-    │   └── Layout.tsx
+    ├── utils
+    │   └── routes
+    │       ├── index.tsx
+    │       └── loader.js
     ├── index.tsx
     └── pages
-        ├── _404.tsx
-        ├── components
-        │   └── index.tsx
+        ├── users
+        |   ├── index.tsx
+        │   └── [user_id].tsx
         ├── about.tsx
         └── index.tsx
 ```
 
 - `http://app.dev/` -> `./src/pages/index.tsx`
 - `http://app.dev/about` -> `./src/pages/about.tsx`
-- `http://app.dev/components` -> `./src/pages/components/index.tsx`
-
-## Dynamic Segments
-
-Dynamic segments such as `/blog/:slug` are not yet supported but coming soon!
+- `http://app.dev/users` -> `./src/pages/users/index.tsx`
+- `http://app.dev/users/1` -> `./src/pages/users/[user_id].tsx`
 
 ## License
 
