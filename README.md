@@ -14,7 +14,7 @@ This assumes you have a Webpack project with React Router set up.
 
 1. Install:
 
-   download and copy to `utils/router` and config require('./loader!path-to-pages')
+   download and copy to `utils/router` and set require('./loader!path-to-pages')
 
 2. In your main `index.tsx` file (or something similar) add import to `utils/router` in order to retrieve the routing information that you will want to pass to `react-router-dom`:
 
