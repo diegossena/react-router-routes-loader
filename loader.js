@@ -23,20 +23,17 @@ async function recursiveReadDirectory(directory_path, baseUrl = '') {
         .replace(/^\[[a-z0-9_-]+]/gi, replaceValue => (
           ':' + replaceValue.slice(1, -1)
         ))
-      if (dirent.isFile()) {
-        if (dirent.name.endsWith(".tsx")) {
-          return {
-            path: (
-              baseUrl
-              + '/'
-              + file_url
-            ).replace(/(\/index)?(\.tsx)$/, ''),
-            component_path: file_path
-          }
-        }
-      } else {
+      if (dirent.isDirectory())
         return recursiveReadDirectory(file_path, `${baseUrl}/${file_url}`)
-      }
+      if (dirent.isFile() && dirent.name.endsWith(".tsx"))
+        return {
+          path: (
+            baseUrl
+            + '/'
+            + file_url
+          ).replace(/(\/index)?(\.tsx)$/, ''),
+          component_path: file_path
+        }
     })
   ).then(elements => elements.flatMap(element => element))
 }
