@@ -23,16 +23,20 @@ async function recursiveReadDirectory(directory_path, baseUrl = '') {
         .replace(/^\[[a-z0-9_-]+]/gi, replaceValue => (
           ':' + replaceValue.slice(1, -1)
         ))
-      if (dirent.isFile() && dirent.name.endsWith(".tsx")) {
-        const file_endPoint = file_url.replace(/(index)?(\.tsx)$/, '')
-        return [{
-          path: baseUrl
-            + '/'
-            + (file_endPoint === '_404' ? '*' : file_endPoint),
-          component_path: file_path
-        }]
+      if (dirent.isFile()) {
+        if (dirent.name.endsWith(".tsx")) {
+          return {
+            path: (
+              baseUrl
+              + '/'
+              + file_url
+            ).replace(/(\/index)?(\.tsx)$/, ''),
+            component_path: file_path
+          }
+        }
+      } else {
+        return recursiveReadDirectory(file_path, `${baseUrl}/${file_url}`)
       }
-      return recursiveReadDirectory(file_path, `${baseUrl}/${file_url}`)
     })
   ).then(elements => elements.flatMap(element => element))
 }
